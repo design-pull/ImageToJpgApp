@@ -2,10 +2,14 @@
 
 ImageToJpgApp は Windows 向けのシンプルな GUI アプリケーションで、複数画像を一括で JPEG に変換します。ドラッグ＆ドロップで直感的に操作でき、主要画像形式（PNG / JPEG / WebP / GIF など）に対応しています。
 
+## ダウンロード
+最新のリリースと配布ファイル（exe）は GitHub Releases から入手してください。  
+https://github.com/design-pull/ImageToJpgApp/releases/tag/v0.1.0
+
 ## インストール（エンドユーザー向け）
-1. Releases から最新の `ImageToJpgApp.exe` をダウンロード。  
+1. Releases ページから `ImageToJpgApp.exe` をダウンロード。  
 2. ダウンロードした実行ファイルをダブルクリックして起動。  
-3. 必要に応じて右クリック → プロパティ → 「ブロックの解除」を実行してから起動してください（Windows SmartScreen による警告を回避するため）。
+3. Windows がブロックする場合は、ファイルを右クリック → プロパティ → 「ブロックの解除」を実行してから起動してください。
 
 ## 使い方（基本）
 - ファイルまたはフォルダをアプリウィンドウへドラッグ＆ドロップします。  
@@ -18,7 +22,7 @@ ImageToJpgApp は Windows 向けのシンプルな GUI アプリケーション�
 
 1. リポジトリをクローン:
 ```powershell
-git clone https://github.com/<あなたのユーザ>/ImageToJpgApp.git
+git clone https://github.com/design-pull/ImageToJpgApp.git
 cd ImageToJpgApp
 ```
 2. 仮想環境作成と有効化:
@@ -36,7 +40,7 @@ python -m app.main
 ```
 
 ## ビルド（配布用 exe）
-1. アイコンを assets/app.ico として配置（任意）。  
+1. アイコンを `assets/app.ico` として配置（任意）。  
 2. クリーン:
 ```powershell
 Remove-Item -Recurse -Force .\dist, .\build, .\ImageToJpgApp.spec -ErrorAction SilentlyContinue
@@ -51,7 +55,7 @@ pyinstaller --noconfirm --clean --onefile --windowed --name ImageToJpgApp --icon
 ```
 5. 出力ファイルは `dist\ImageToJpgApp.exe`。配布前に別マシンで動作確認してください。
 
-## Release と配布の推奨ワークフロー
+## リリースと配布の推奨ワークフロー
 - バイナリは Git の履歴に直接含めず、GitHub Releases に添付して配布してください。  
 - リリース前にタグを作成:
 ```powershell
@@ -66,15 +70,11 @@ Get-FileHash .\dist\ImageToJpgApp.exe -Algorithm SHA256
 ## トラブルシューティング（短く）
 - 起動で「No module named 'PyQt5'」が出る: 仮想環境でビルドしているか、`--paths .\.venv\Lib\site-packages` と `--collect-all PyQt5` や適切な `--add-data` を指定して再ビルドしてください。  
 - アイコンが反映されない: Explorer のキャッシュの可能性があるためエクスプローラー再起動やサインアウト/再起動を試してください。  
-- ダウンロード後に実行できない: プロパティから「ブロックの解除」を試し、それでも警告が出る場合は署名を検討してください。
+- ダウンロード後に実行できない: プロパティから「ブロックの解除」を試し、それでも警告が出る場合はコード署名を検討してください。
 
 ## 貢献ガイドライン
 - Issue に不具合や改善提案を報告してください。再現手順、OS バージョン、ログを添えると対応が早くなります。  
-- 機能追加や修正は feature ブランチを切り、プルリクを作成してください。CI が通ることを確認の上でレビュー依頼してください。
+- 機能追加や修正は feature ブランチを切り、プルリクエストを作成してください。CI が通ることを確認の上でレビュー依頼してください。
 
 ## ライセンス
 このプロジェクトは適切なライセンス（例: MIT）を明記してください。まだ決めていない場合は LICENSE ファイルを追加することをおすすめします。
-
----
-
-必要なら README を短縮版にしたり、英語版を用意したり、CI で自動的にリリースを作るワークフロー雛形を生成します。どれを作りますか。
